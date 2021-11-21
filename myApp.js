@@ -3,8 +3,12 @@ var app = express();
 
 console.log("Hello world");
 
-app.get("/",function(req,resp){
+/*app.get("/",function(req,resp){
     resp.send("Hello Express");
+})*/
+
+app.get("/",function(req,res){
+    res.sendFile(__dirname + "/views/index.html");
 })
 
 
