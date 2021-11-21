@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { response } = require('express');
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 //middleware level root
 app.use(function(req,res,next){
@@ -8,7 +9,8 @@ app.use(function(req,res,next){
     next();
 })
 app.use("/public",express.static(__dirname + "/public"));
-
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json());
 
 console.log("Hello world");
 
@@ -46,7 +48,7 @@ app.route("/name")
 .get(function(req,res,next){
     res.json(getName(req.query.first,req.query.last)); 
 }).post(function(req,res){
-    res.json(getName(req.query.first,req.query.last)); 
+    res.json(getName(req.body.first,req.body.last)); 
 })
 
 function getName(firstName,lastName){
