@@ -43,18 +43,16 @@ app.get("/:word/echo",function(req,res){
 })
 
 app.route("/name")
-.get(function(req,res){
-    firstName = req.query.first;
-    lastName = req.query.last;
-    res.json({
-        name : `${firstName} ${lastName}`
-    })
+.get(function(req,res,next){
+    res.json(getName(req.query.first,req.query.last)); 
 }).post(function(req,res){
-    firstName = req.query.first;
-    lastName = req.query.last;
-    res.json({
-        name : `${firstName} ${lastName}`
-    }) 
+    res.json(getName(req.query.first,req.query.last)); 
 })
+
+function getName(firstName,lastName){
+    return {
+        name : `${firstName} ${lastName}`
+    }
+}
 
 module.exports = app;
