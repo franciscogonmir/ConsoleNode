@@ -2,6 +2,11 @@ require('dotenv').config();
 const { response } = require('express');
 var express = require('express');
 var app = express();
+//middleware level root
+app.use(function(req,res,next){
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+})
 app.use("/public",express.static(__dirname + "/public"));
 
 
